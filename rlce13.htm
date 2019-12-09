@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="title" content="LISTSERV - List Moderation - LISTEUS.CGCENT.MIAMI.EDU">
+<meta name="theme-color" content="#084328" />
+<title>LISTSERV - List Moderation - LISTEUS.CGCENT.MIAMI.EDU</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<style type="text/css">
+
+/* LAYOUT COMPONENTS */
+
+body                                           { min-width: 300px; background-color: #F7F7F7; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #000000; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+#background                                    { width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background-color: #F7F7F7; z-index: -1; }
+#header-wrap                                   { width: 100%; min-width: 320px; position: fixed; top: 0px; left: 0px; z-index: 40; }
+#header                                        { margin: 0px; }
+#content-wrap                                  { width: 100%; min-width: 300px; height: auto; position: absolute; top: 80px; left: 0px; overflow: visible; z-index: 10; }
+#content                                       { margin: 10px; }
+#helpscreen-wrap                               { width: 100%; min-width: 300px; height: auto; position: absolute; top: 0px; left: 0px; overflow: visible; z-index: 10; }
+#helpscreen                                    { margin: 10px; }
+
+@media screen and (max-width: 767px) { 
+body                                           { font-size: 14px; }
+}
+
+/* NAVIGATION BAR */
+
+#navbar                                        { width: 100%; min-width: 320px; height: 80px; position: fixed; margin: 0px; padding: 0px; background-color: #084328; background-image: url("http://listeus.cgcent.miami.edu/images/Banner.png"); background-size: auto; background-position: right center; background-repeat: no-repeat; -moz-box-shadow: 0px 2px 2px #999999; -webkit-box-shadow: 0px 2px 2px #999999; box-shadow: 0px 2px 2px #999999; z-index: 50; }
+#navbar-left                                   { height: 80px; margin: 0px; padding: 0px; display: table; float: left; }
+#navbar-left .logo                             { margin: 0px; padding: 0px; display: table-cell; vertical-align: middle; position: relative; cursor: pointer; }
+#navbar-left .listserv                         { margin: 0px; padding: 0px 0px 0px 8px; display: table-cell; vertical-align: middle; position: relative; cursor: auto; }
+#navbar-left .listserv img                     { max-width: 200px; }
+#navbar-left .subnav                           { margin: 0px; padding: 0px; display: table-cell; vertical-align: middle; position: relative; cursor: pointer; }
+#navbar-right                                  { height: 80px; margin: 0px; padding: 0px; display: table; float: right; }
+#navbar-right .email                           { margin: 0px; padding: 0px 10px 0px 10px; display: table-cell; vertical-align: middle; position: relative; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #FFFFFF; }
+#navbar-right .email a                         { color: #FFFFFF; text-decoration: none; }
+#navbar-right .help                            { margin: 0px; padding: 0px; display: table-cell; vertical-align: middle; position: relative; cursor: pointer; }
+#navbar-right .profile                         { margin: 0px; padding: 0px; display: none; vertical-align: middle; position: relative; cursor: pointer; }
+
+@media screen and (max-width: 767px) {
+#navbar-right .email                           { font-size: 14px; display: none; }
+#navbar-right .profile                         { display: table-cell; }
+}
+
+/* SIDE NAVIGATION */
+
+#subnav-wrap                                   { width: auto; min-width: 240px; height: 100%; position: absolute; top: 0px; left: 0px; margin: 0px; padding: 0px; display: none; background-color: #FFFFFF; -moz-box-shadow: 0px 3px 3px #999999; -webkit-box-shadow: 0px 3px 3px #999999; box-shadow: 0px 3px 3px #999999; z-index: 30; }
+#subnav .spacer                                { width: auto; height: 80px; }
+#subnav .category                              { width: 4px; height: 38px; background-color: #084328; float: left; }
+#subnav .icon                                  { padding: 8px 12px 8px 6px; float: left; }
+#subnav .categoryitem                          { background-color: #EEEEEE; width: auto; height: 38px; overflow: hidden; cursor: pointer; }
+#subnav .categoryitem:hover                    { background-color: #EEEEEE; }
+#subnav .itemlink                              { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #084328; line-height: 38px; float: left; }
+#subnav .itemlink a                            { color: #084328; text-decoration: none; }
+#subnav .subicon                               { padding: 8px 12px 8px 10px; float: left; }
+#subnav .subitem                               { width: auto; height: 38px; overflow: hidden; cursor: pointer; }
+#subnav .subitem:hover                         { background-color: #EEEEEE; }
+#subnav .subitemlink                           { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #084328; line-height: 38px; float: left; }
+#subnav .subitemlink a                         { color: #084328; text-decoration: none; }
+#subnav .border-top                            { border-top: 1px solid #DEDEDE; }
+#subnav .border-bottom                         { border-bottom: 1px solid #DEDEDE; }
+#subnav #admin-arrow                           { font-family: 'Montserrat', sans-serif; font-size: 24px; color: #084328; line-height: 38px; padding: 0px 10px 0px 10px; float: right; }
+#subnav #owner-arrow                           { font-family: 'Montserrat', sans-serif; font-size: 24px; color: #084328; line-height: 38px; padding: 0px 10px 0px 10px; float: right; }
+#subnav #archive-arrow                         { font-family: 'Montserrat', sans-serif; font-size: 24px; color: #084328; line-height: 38px; padding: 0px 10px 0px 10px; float: right; }
+
+@media screen and (max-width: 767px) {
+#subnav .itemlink                              { font-size: 14px; }
+#subnav .subitemlink                           { font-size: 14px; }
+}
+
+/* PERSONAL PROFILE */
+
+#profile                                       { width: 298px; position: absolute; top: 100px; right: 70px; background-color: #FFFFFF; border: 1px solid #CCCCCC; display: none; }
+#profile .arrow                                { width: 17px; height: 9px; position: absolute; top: -9px; right: 40px; background-image: url('/archives/images/default_menu_arrow_17x9.png'); background-repeat: no-repeat; }
+#profile .profile                              { width: 100%; margin: 0px; padding: 10px; border-spacing: 2px; }
+#profile .loggedin                             { width: 273px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#profile .entry                                { width: 195px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.avatar                                        { width: 64px; height: 64px; border: 1px solid #CCCCCC; }
+
+@media screen and (max-width: 767px) {
+#profile                                       { width: 298px; right: 10px; }
+}
+
+/* BODY COMPONENTS */
+
+#pagetitle                                     { width: 100%; min-width: 300px; clear: both; }
+.pagetitle                                     { width: 100%; margin: 10px 0px 10px 0px; padding: 0px; border-spacing: 0px; }
+#listselector                                  { width: 100%; min-width: 300px; clear: both; }
+.listselector                                  { width: 100%; margin: 0px 0px 20px 0px; padding: 0px; border-spacing: 10px; background-color: #F0F0F0; border: 1px solid #DEDEDE; -moz-border-radius: 8px 8px 8px 8px; -webkit-border-radius: 8px 8px 8px 8px; border-radius: 8px 8px 8px 8px; }
+.listaddress                                   { width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#status                                        { width: 100%; min-width: 300px; clear: both; }
+.status                                        { width: 100%; margin: 10px 5px 20px 5px; padding: 0px; border-spacing: 2px; }
+#options                                       { width: 100%; min-width: 300px; clear: both; }
+.options                                       { width: 100%; margin: 10px 5px 20px 5px; padding: 0px; border-spacing: 2px; }
+.options-compact                               { margin: 10px 5px 20px 5px; padding: 0px; border-spacing: 2px; }
+#tabs                                          { width: 100%; min-width: 300px; clear: both; }
+.tabs                                          { width: 100%; margin: 0px; padding: 0px; border-spacing: 0px; }
+.tabs-active                                   { width: auto; min-width: 140px; margin: 0px 4px 20px 0px; padding: 6px 0px 8px 0px; background-color: #F37321; border: 1px solid #DEDEDE; -webkit-border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; text-align: center; white-space: nowrap; float: left; }
+.tabs-active .text                             { margin: 0px; padding: 0px; color: #FFFFFF; }
+.tabs-active .text a                           { color: #FFFFFF; text-decoration: none; }
+.tabs-inactive                                 { width: auto; min-width: 140px; margin: 0px 4px 20px 0px; padding: 6px 0px 8px 0px; background-color: #FFFFFF; border: 1px solid #DEDEDE; -webkit-border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; text-align: center; white-space: nowrap; float: left; }
+.tabs-inactive .text                           { margin: 0px; padding: 0px; color: #084328; }
+.tabs-inactive .text a                         { color: #084328; text-decoration: none; }
+#steps                                         { width: 100%; min-width: 300px; clear: both; }
+.steps                                         { width: auto; margin: 0px; padding: 0px; border-spacing: 0px; border: 1px solid #DEDEDE }
+.steps-active                                  { width: auto; min-width: 95px; margin: 0px; padding: 6px 0px 8px 0px; background-color: #F37321; text-align: center; white-space: nowrap; float: left; }
+.steps-active .text                            { margin: 0px; padding: 0px; color: #FFFFFF; }
+.steps-active .text a                          { color: #FFFFFF; text-decoration: none; }
+.steps-active .disabled                        { margin: 0px; padding: 0px; color: #999999; cursor: not-allowed; }
+.steps-inactive                                { width: auto; min-width: 95px; margin: 0px; padding: 6px 0px 8px 0px; background-color: #FFFFFF; text-align: center; white-space: nowrap; float: left; }
+.steps-inactive .text                          { margin: 0px; padding: 0px; color: #084328; }
+.steps-inactive .text a                        { color: #084328; text-decoration: none; }
+.steps-inactive .disabled                      { margin: 0px; padding: 0px; color: #999999; cursor: not-allowed; }
+#steps-buttons                                 { width: 100%; min-width: 300px; clear: both; }
+.steps-buttons                                 { width: 100%; margin: 0px; padding: 0px; border-spacing: 0px; }
+#navtrigger                                    { position: relative; float: right; clear: both; z-index: 70; }
+.navtrigger                                    { margin: 0px; padding: 0px; border-spacing: 0px; background-color: #FFFFFF; border: 1px solid #CCCCCC; }
+#navopts                                       { width: 275px; position: absolute; display: none; background-color: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; z-index: 60; }
+.navopts                                       { width: 100%; margin: 0px; padding: 10px; border-spacing: 2px; }
+#output                                        { width: 100%; min-width: 300px; clear: both; }
+.output                                        { width: 100%; margin: 0px; padding: 0px; border-spacing: 0px; background-color: bbd2c7; border: 1px solid #DEDEDE; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; }
+.output-blank                                  { width: 100%; margin: 0px; padding: 0px; border-spacing: 0px; border: 0px; }
+.output-section-full                           { width: 100%; margin: 0px; padding: 10px; border-spacing: 0px; background-color: #FFFFFF; border: 1px solid #DEDEDE; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; vertical-align: top; }
+.output-section-left                           { width: 50%; margin: 0px; padding: 0px; border-spacing: 0px; background-color: #FFFFFF; border: 1px solid #DEDEDE; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; vertical-align: top; }
+.output-section-right                          { width: 50%; margin: 0px; padding: 0px; border-spacing: 0px; background-color: #FFFFFF; border: 1px solid #DEDEDE; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; vertical-align: top; }
+.output-section-content                        { padding: 10px; }
+#box                                           { width: 100%; min-width: 300px; clear: both; }
+.box                                           { width: 619px; margin: 0px; padding: 0px; border-spacing: 0px; }
+.boxinner                                      { width: 100%; margin: 0px; padding: 0px; border-spacing: 0px; }
+.boxtop                                        { margin: 0px; padding: 8px; border-spacing: 0px; background-color: #F37321; border: 1px solid #DEDEDE; }
+.boxback                                       { margin: 0px; padding: 10px; border-spacing: 0px; background-color: bbd2c7; border-right: 1px solid #DEDEDE; border-left: 1px solid #DEDEDE; border-bottom: 1px solid #DEDEDE; }
+#trailer                                       { width: 100%; min-width: 300px; clear: both; }
+.trailer                                       { width: 100%; margin: 0px; padding: 0px; border-spacing: 0px; }
+#loading                                       { width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background: #666666; opacity: 0.5; filter: Alpha(Opacity=50); display: none; overflow: auto; z-index: 80; }
+#spinner                                       { position: fixed; top: 40%; left: 50%; margin-left: -50px; margin-top: -50px; z-index: 90; }
+#listdesc                                      { position: absolute; z-index: 20; }
+#selector ul                                   { width: 100%; height: 300px; margin: 0px; padding: 2px; border-spacing: 0px; background-color: #FFFFFF; border: 1px solid #DEDEDE; overflow-y: scroll; text-align: left; }
+#selector li                                   { margin: 0px; padding: 1px; background-color: #FFFFFF; cursor: pointer; list-style: none; }
+
+@media screen and (max-width: 991px) {
+.output-section-left                           { width: 100%; margin-bottom: 10px; }
+.output-section-right                          { width: 100%; }
+}
+@media screen and (max-width: 767px) {
+.listaddress                                   { width: 540px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+@media screen and (max-width: 639px) {
+.listaddress                                   { width: 380px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.steps-active                                  { width: 100%; }
+.steps-inactive                                { width: 100%; }
+.box                                           { width: 100%; }
+}
+@media screen and (max-width: 479px) {
+.listaddress                                   { width: 240px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tabs-active                                   { margin: 0px 1px 20px 0px; width: 49%; }
+.tabs-inactive                                 { margin: 0px 1px 20px 0px; width: 49%; }
+}
+
+/* CONTENT */
+
+a                                              { color: #084328; text-decoration: none; }
+a:hover                                        { text-decoration: underline; }
+th                                             { font-size: 14px; font-weight: normal; color: #FFFFFF; margin: 0px; text-align: left; }
+th a                                           { color: #FFFFFF; text-decoration: none; }
+h1                                             { font-size: 17px; font-weight: normal; color: #084328; margin: 0px; }
+h2                                             { font-size: 17px; font-weight: normal; color: #084328; margin: 0px; }
+h3                                             { font-size: 17px; font-weight: normal; color: #084328; margin: 0px; }
+h4                                             { font-size: 14px; font-weight: normal; color: #FFFFFF; margin: 0px; }
+h4 a                                           { color: #FFFFFF; text-decoration: none; }
+h4 a:hover                                     { text-decoration: underline; }
+h5                                             { font-size: 14px; font-weight: normal; color: #000000; margin: 0px; }
+h6                                             { font-size: 14px; font-weight: normal; color: #000000; margin: 0px; }
+tt                                             { font-size: 14px; font-weight: normal; color: #000000; margin: 0px; }
+li                                             { color: #000000; list-style: square outside none; }
+hr                                             { width: 100%; height: 1px; color: #999999; border-style: dotted; border-color: #999999; border-width: 1px 0px 0px 0px; padding-top: 1px; padding-bottom: 1px; }
+pre                                            { font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap !important; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; _white-space: normal; }
+pre.prop                                       { font-family: 'Montserrat', sans-serif; color: #000000; }
+pre.prop a                                     { color: #084328; text-decoration: none; }
+pre.prop a:hover                               { text-decoration: underline; }
+pre.prop a:visited                             { color: #663399; text-decoration: none; }
+pre.mono                                       { font-family: 'Courier New', Courier, monospace; color: #000000; }
+pre.mono a                                     { color: #084328; text-decoration: none; }
+pre.mono a:hover                               { text-decoration: underline; }
+pre.mono a:visited                             { color: #663399; text-decoration: none; }
+.archive a:visited                             { color: #663399; text-decoration: none; }
+.grey                                          { color: #999999; margin: 0px; }
+.error, .SPF_red, .SPF_error                   { color: #CC3333; margin: 0px; }
+.orange, .SPF_orange                           { color: #FF9933; margin: 0px; }
+.green, .SPF_green                             { color: #009900; margin: 0px; }
+.message, .SPF_match, .SPF_comment             { color: #3333FF; margin: 0px; }
+.highlight                                     { background-color: #FFFF33; }
+.subindent                                     { margin-left: 25px; }
+.superindent                                   { margin-left: 50px; }
+.colorscheme                                   { width: 27px; height: 27px; border: 1px solid #000000; margin: 3px 1px 0px 1px; cursor: pointer; display: inline-block; }
+.colorpatch                                    { width: 27px; height: 27px; border: 1px solid #000000; margin: 1px 0px 0px 5px; position: absolute; }
+
+@media screen and (max-width: 767px) {
+h1, h2, h3                                     { font-size: 17px; }
+h4, h5, h6, pre                                { font-size: 14px; }
+}
+
+@media screen and (max-width: 767px) {
+input, select, textarea                        { font-size: 14px }
+}
+
+@media screen and (max-width: 359px) {
+input[type="text"]                             { width: 260px; }
+input[type="text"].quarter                     { width: 225px; }
+input[type="text"].format                      { width: 185px; }
+input[type="text"].half                        { width: 127px; }
+input[type="password"]                         { width: 260px; }
+input[type="file"]                             { width: 260px; }
+select                                         { width: 260px; }
+select.format                                  { width: 185px; }
+textarea.short                                 { width: 260px; }
+}
+
+/* TABLES AND REPORTS */
+
+#table-wrap                                    { width: 100%; min-width: 100%; height: auto; margin: 0px; padding: 0px; overflow-x: scroll; }
+#canvas-wrap                                   { width: 100%; height: 500px; margin: 0px; padding: 20px 0px 20px 0px; background-color: #FFFFFF; }
+#canvas                                        { width: 100%; height: 500px; margin: 0px; padding: 0px; background-color: #FFFFFF; }
+.chartjs-hidden-iframe                         { background-color: transparent; }
+.emphasizedcell                                { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #F37321; }
+.normalgroup                                   { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #FFFFFF; }
+.emphasizedgroup                               { margin: 0px; padding: 5px; border-spacing: 0px; background-color: bbd2c7; }
+.headergroup                                   { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #C4CDDE; }
+.nogroup                                       { margin: 0px; padding: 5px; border-spacing: 0px; }
+.listgroup                                     { margin: 0px; padding: 2px 5px 2px 0px; border-spacing: 0px; }
+.tablesorter th                                { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #F37321; }
+.tablesorter thead td                          { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #F37321; }
+.tablesorter .header                           { background-image: url('/archives/images/default_menu_sort_both_17x11.png'); background-repeat: no-repeat; background-position: center right; cursor: pointer; padding-right: 25px; }
+.tablesorter .tablesorter-header               { background-image: url('/archives/images/default_menu_sort_both_17x11.png'); background-repeat: no-repeat; background-position: center right; cursor: pointer; padding-right: 25px; }
+.tablesorter thead .headerSortUp               { background-image: url('/archives/images/default_menu_sort_up_17x11.png'); }
+.tablesorter thead .tablesorter-headerAsc      { background-image: url('/archives/images/default_menu_sort_up_17x11.png'); }
+.tablesorter thead .tablesorter-headerSortUp   { background-image: url('/archives/images/default_menu_sort_up_17x11.png'); }
+.tablesorter thead .headerSortDown             { background-image: url('/archives/images/default_menu_sort_down_17x11.png'); }
+.tablesorter thead .tablesorter-headerDesc     { background-image: url('/archives/images/default_menu_sort_down_17x11.png'); }
+.tablesorter thead .tablesorter-headerSortDown { background-image: url('/archives/images/default_menu_sort_down_17x11.png'); }
+.tablesorter thead .sorter-false               { background-image: none !important; cursor: auto !important; }
+.tablesorter tr.odd>td                         { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #FFFFFF; }
+.tablesorter tr.even>td                        { margin: 0px; padding: 5px; border-spacing: 0px; background-color: bbd2c7; }
+.tablesorter .tablesorter-filter-row td        { margin: 0px; padding: 5px; border-spacing: 0px; background-color: #C4CDDE; }
+.tablesorter input.tablesorter-filter          { width: 100%; background-image: url("/archives/images/default_archive_filter_22x22.png"); background-repeat: no-repeat; background-position: left; padding-left: 25px; }
+.tablesorter .filtered                         { display: none; }
+
+@media screen and (max-width: 767px) {
+.tablesorter .tablesorter-filter-row td        { display: block; }
+}
+
+/* MISCELLANEOUS HELPERS */
+
+.nowrap{white-space:nowrap}.forcewrap{width:260px;min-width:100%;overflow-wrap:break-word;word-wrap:break-word;-ms-word-break:break-word;word-break:break-word}.noselect{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.pointer{cursor:pointer}.not-allowed{cursor:not-allowed}.left{text-align:left}.center{text-align:center}.right{text-align:right}.top{vertical-align:top}.middle{vertical-align:middle}.bottom{vertical-align:bottom}.table-center{margin-left:auto;margin-right:auto}.border{border:1px solid #DEDEDE}.border-top{border-top:1px solid #DEDEDE}.border-right{border-right:1px solid #DEDEDE}.border-bottom{border-bottom:1px solid #DEDEDE}.border-left{border-left:1px solid #DEDEDE}.line-height{line-height:22px}.nopadding{margin:0;padding:0;border-spacing:0}.pad-content{width:100%;margin:0;padding:0;border-spacing:8px}.pad-left{padding-left:5px}.pad-right{padding-right:5px}.pad-top{padding-top:3px}.pad-bottom{padding-bottom:10px}.pad-icon{padding:1px 10px 1px 1px}.block{display:block!important}.none{display:none!important}.float-left{float:left}.float-right{float:right}.width-100{width:100%}.width-95{width:95%}.width-90{width:90%}.width-85{width:85%}.width-80{width:80%}.width-75{width:75%}.width-70{width:70%}.width-65{width:65%}.width-60{width:60%}.width-55{width:55%}.width-50{width:50%}.width-45{width:45%}.width-40{width:40%}.width-35{width:35%}.width-30{width:30%}.width-25{width:25%}.width-20{width:20%}.width-15{width:15%}.width-10{width:10%}.width-5{width:5%}.width-1{width:1%}
+.show-l,.show-m,.show-s,.show-xs{display:none}
+
+@media screen and (max-width:991px){.hide-l{display:none}.show-l{display:inline-block}.break-l{display:block}.head-l{width:auto!important;display:block;text-align:left!important}.row-l{width:inherit;display:block;text-align:left!important}.bold-l{font-weight:bold}}
+@media screen and (max-width:767px){.hide-m{display:none}.show-m{display:inline-block}.break-m{display:block}.head-m{width:auto!important;display:block;text-align:left!important}.row-m{width:inherit;display:block;text-align:left!important}.bold-m{font-weight:bold}}
+@media screen and (max-width:639px){.hide-s{display:none}.show-s{display:inline-block}.break-s{display:block}.head-s{width:auto!important;display:block;text-align:left!important}.row-s{width:inherit;display:block;text-align:left!important}.bold-s{font-weight:bold}}
+@media screen and (max-width:479px){.hide-xs{display:none}.show-xs{display:inline-block}.break-xs{display:block}.head-xs{width:auto!important;display:block;text-align:left!important}.row-xs{width:inherit;display:block;text-align:left!important}.bold-xs{font-weight:bold}.reduce{width:48px;height:48px}}
+
+</style>
+
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div id="background"></div>
+<div id="header-wrap">
+<div id="header">
+<a href="#skipnavigation" title="Skip Navigational Links"></a>
+<div id="navbar" class="noselect">
+<div id="navbar-left">
+<div class="listserv"><img src="http://listeus.cgcent.miami.edu/images/UM_Logo.png" id="menu-listserv" alt="LISTSERV - LISTEUS.CGCENT.MIAMI.EDU" title="LISTSERV - LISTEUS.CGCENT.MIAMI.EDU" class="float-left" /></div>
+</div>
+</div>
+</div>
+</div>
+<div id="subnav-wrap" class="noselect" role="navigation">
+<div id="subnav">
+<div class="spacer"></div>
+<div class="categoryitem border-bottom" onclick="javascript:toggleOwner()" id="owner-trigger"><div class="category"></div><div class="icon"><img src="/archives/images/default_owner_22x22.png" alt="List Management" title="List Management" /></div><div class="itemlink"><a href="javascript:return false" aria-label="List Management Menu">List Management</a></div><div id="owner-arrow">&#9656;</div></div>
+<div id="owner" style="display:none">
+<div class="subitem" onclick="goTo('/scripts/wa.exe?OWNER=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_dash_22x22.png" alt="List Dashboard" title="List Dashboard" /></div><div class="subitemlink"><a href="/scripts/wa.exe?OWNER=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">List Dashboard</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?MOD=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_moderation_22x22.png" alt="List Moderation" title="List Moderation" /></div><div class="subitemlink"><a href="/scripts/wa.exe?MOD=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">List Moderation</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?WIZARD=&t=1&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_config_22x22.png" alt="List Configuration" title="List Configuration" /></div><div class="subitemlink"><a href="/scripts/wa.exe?WIZARD=&t=1&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">List Configuration</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?REPORT=&z=0&9=A&9=Owner&9=Subscription&9=Send&9=Confidential&9=Notebook&10=1&s=0&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_report_22x22.png" alt="List Reports" title="List Reports" /></div><div class="subitemlink"><a href="/scripts/wa.exe?REPORT=&z=0&9=A&9=Owner&9=Subscription&9=Send&9=Confidential&9=Notebook&10=1&s=0&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">List Reports</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?REPORT=&z=2&9=J&9=B&9=I&9=N&s=0&Q=Q&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_subscribe_22x22.png" alt="Subscriber Reports" title="Subscriber Reports" /></div><div class="subitemlink"><a href="/scripts/wa.exe?REPORT=&z=2&9=J&9=B&9=I&9=N&s=0&Q=Q&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Subscriber Reports</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?LOG=&t=1&LL=1&newL=1&0=0+1+2+3&2=2c%7FSUBSCRIBE%7F%7F%01&2=2c%7FSIGNOFF%7F%7F%01&2=2c%7FADD%7F%7F%01&2=2c%7FDELETE%7F%7F%01&2=2c%7FPOST%7F%7F%01&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_log_22x22.png" alt="List Activity Reports" title="List Activity Reports" /></div><div class="subitemlink"><a href="/scripts/wa.exe?LOG=&t=1&LL=1&newL=1&0=0+1+2+3&2=2c%7FSUBSCRIBE%7F%7F%01&2=2c%7FSIGNOFF%7F%7F%01&2=2c%7FADD%7F%7F%01&2=2c%7FDELETE%7F%7F%01&2=2c%7FPOST%7F%7F%01&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">List Activity Reports</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?ACTMGR1=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_archive_subscribe_22x22.png" alt="Subscriber Management" title="Subscriber Management" /></div><div class="subitemlink"><a href="/scripts/wa.exe?ACTMGR1=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Subscriber Management</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?TPLED1=&W=1&C=ALL&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_webtemp_22x22.png" alt="Web Templates" title="Web Templates" /></div><div class="subitemlink"><a href="/scripts/wa.exe?TPLED1=&W=1&C=ALL&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Web Templates</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?TPLED1=&C=COMMON&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_mailtemp_22x22.png" alt="Mail Templates" title="Mail Templates" /></div><div class="subitemlink"><a href="/scripts/wa.exe?TPLED1=&C=COMMON&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Mail Templates</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?T2&L=&tab=1&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_htmltemp_22x22.png" alt="Newsletter Templates" title="Newsletter Templates" /></div><div class="subitemlink"><a href="/scripts/wa.exe?T2&L=&tab=1&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Newsletter Templates</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?LCMD2&L=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_owner_command_22x22.png" alt="LISTSERV Command" title="LISTSERV Command" /></div><div class="subitemlink"><a href="/scripts/wa.exe?LCMD2&L=&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">LISTSERV Command</a></div></div>
+</div>
+<div class="categoryitem border-bottom" onclick="toggleArchive()" id="archive-trigger"><div class="category"></div><div class="icon"><img src="/archives/images/default_archive_22x22.png" alt="Subscriber Options" title="Subscriber Options" /></div><div class="itemlink"><a href="javascript:return false" aria-label="Subscriber Options Menu">Subscriber Options</a></div><div id="archive-arrow">&#9656;</div></div>
+<div id="archive" style="display:none">
+<div class="subitem" onclick="goTo('/scripts/wa.exe?INDEX&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_archive_index_22x22.png" alt="LISTSERV Archives" title="LISTSERV Archives" /></div><div class="subitemlink"><a href="/scripts/wa.exe?INDEX&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">LISTSERV Archives</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?REPORT&z=4&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_archive_search_22x22.png" alt="Search Archives" title="Search Archives" /></div><div class="subitemlink"><a href="/scripts/wa.exe?REPORT&z=4&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Search Archives</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?REPORT&z=3&9=J&9=B&9=I&9=N&s=0&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_archive_subscribe_22x22.png" alt="Subscriptions" title="Subscriptions" /></div><div class="subitemlink"><a href="/scripts/wa.exe?REPORT&z=3&9=J&9=B&9=I&9=N&s=0&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Subscriptions</a></div></div>
+<div class="subitem" onclick="goTo('/scripts/wa.exe?PREF&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu')"><div class="subicon"><img src="/archives/images/default_archive_prefs_22x22.png" alt="Preferences" title="Preferences" /></div><div class="subitemlink"><a href="/scripts/wa.exe?PREF&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Preferences</a></div></div>
+<div class="subitem border-top" onclick="goTo('/scripts/wa.exe?GETPW1')"><div class="subicon"><img src="/archives/images/default_archive_password_22x22.png" alt="Change Password" title="Change Password" /></div><div class="subitemlink"><a href="/scripts/wa.exe?LOGIN1&c=1&X=CDED3A3C6DF56BFA69&Y=ed%40miami.edu">Change Password</a></div></div>
+<div class="subitem border-bottom" onclick="goTo('/scripts/wa.exe?RESET-COOKIE')"><div class="subicon"><img src="/archives/images/default_archive_logout_22x22.png" alt="Log Out" title="Log Out" /></div><div class="subitemlink"><a href="/scripts/wa.exe?RESET-COOKIE">Log Out</a></div></div>
+</div>
+</div>
+</div>
+<div id="content-wrap" onclick="closeProfile(); closeNavOpts()">
+<div id="content">
+<a name="skipnavigation"></a>
+<div id="pagetitle">
+<table class="pagetitle">
+<tr>
+<td class="pad-right"><img src="https://listeus.cgcent.miami.edu/archives/images/default_owner_moderation_64x64.png" alt="" class="block reduce" /></td>
+<td class="width-100 pad-left">
+<h2>List Moderation</h2>
+<h5 class="hide-xs">Review, approve or reject messages in the moderation queue</h5>
+</td>
+</tr>
+</table>
+</div>
+<div id="output">
+<table class="output">
+<tr><td>
+<!--<table class="pad-content">
+<tr>
+<td class="width-95 top">
+<h2 class="listaddress" title="LISTEUS.CGCENT.MIAMI.EDU">LISTEUS.CGCENT.MIAMI.EDU</h2>
+</td>
+<td class="width-5 top">
+<div id="navtrigger" class="noselect">
+<table class="navtrigger">
+<tr><td><a href="javascript:return false" onclick="toggleNavOpts(event)" class="pointer"><img src="/archives/images/default_menu_subnav_small_22x22.png" alt="Menu" title="Menu" class="block" /></a></td></tr>
+</table>
+</div>
+<div id="navopts" class="noselect" onclick="keepNavOpts(event)">
+</div>
+</td>
+</tr>
+</table>//-->
+<table class="pad-content">
+<tr>
+<td colspan="2">
+
+Click here to approve Rob.
+
+<br />
+<br />
+
+https://listserv.miami.edu/scripts/wa.exe?OK=D51C301F&L=ROB
+
+<br />
+
+https://listserv.miami.edu/scripts/wa.exe?REJECT=D51C301F&L=ROB
+
+</td>
+</tr>
+</table>
+</td></tr>
+</table>
+</div>
+<br />
+<div id="trailer">
+<table class="trailer">
+<tr>
+<td class="left hide-xs"><font color="#084328">LISTEUS.CGCENT.MIAMI.EDU</font></td>
+<td class="right">
+<img src="https://listeus.cgcent.miami.edu/archives/images/default_logo_fsecure_25x25.png" alt="Secured by F-Secure Anti-Virus" title="Secured by F-Secure Anti-Virus" />
+<img src="https://listeus.cgcent.miami.edu/archives/images/default_logo_catalist_25x25.png" alt="CataList Email List Search" title="CataList Email List Search" />
+<img src="https://listeus.cgcent.miami.edu/archives/images/default_logo_listserv_25x25.png" alt="Powered by LISTSERV" title="Powered by LISTSERV" />
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>
