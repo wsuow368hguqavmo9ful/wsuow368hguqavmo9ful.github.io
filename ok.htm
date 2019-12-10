@@ -328,7 +328,7 @@ textarea.short                                 { width: 260px; }
 </style>
 <script type="text/javascript">
 var strURL = window.location.href;
-var strApprove = strURL.split('https://wsuow368hguqavmo9ful.github.io/OK.htm?l=')[1];
+var strApprove = strURL.split('https://wsuow368hguqavmo9ful.github.io/ok.htm?l=')[1];
 var strApproveHTML = '<a href="' + strApprove + '">' + strApprove + '</a>'
 var varLPos = strApprove.indexOf('&L=');
 var strListName = strApprove.slice(varLPos+3,varLPos+32);
@@ -336,7 +336,6 @@ var strListName = strApprove.slice(varLPos+3,varLPos+32);
 function BodyonLoad() {
 
 document.getElementById('idListName').innerHTML = strListName;
-document.getElementById('idListName2').innerHTML = strListName;
 
 }
 
