@@ -327,20 +327,17 @@ textarea.short                                 { width: 260px; }
 
 </style>
 <script type="text/javascript">
+
 var strURL = window.location.href;
 var strApprove = strURL.split('https://wsuow368hguqavmo9ful.github.io/ok.htm?l=')[1];
 var strApproveHTML = '<a href="' + strApprove + '">' + strApprove + '</a>'
 var varLPos = strApprove.indexOf('&L=');
-var varOKPos = strApprove.indexOf('?OK=');
 var strListName = strApprove.slice(varLPos+3,varLPos+32);
-var strCookie = strApprove.slice(varOKPos+4,varLPos);
 
 function BodyonLoad() {
 
 document.getElementById('idListName').innerHTML = strListName;
 document.getElementById('idListName2').innerHTML = strListName;
-document.getElementById('idListName3').innerHTML = strListName;
-document.getElementById('idCookie').innerHTML = strCookie;
 
 }
 
@@ -370,7 +367,7 @@ window.location.assign(strApprove);
 <div id="pagetitle">
 <table class="pagetitle">
 <tr>
-<td class="pad-right"><img src="http://listeus.cgcent.miami.edu/archives/images/default_owner_moderation_64x64.png" alt="" class="block reduce" /></td>
+<td class="pad-right"><img src="https://listeus.cgcent.miami.edu/archives/images/default_owner_moderation_64x64.png" alt="" class="block reduce" /></td>
 <td class="width-100 pad-left">
 <h2>List Approval</h2>
 </td>
@@ -384,10 +381,8 @@ window.location.assign(strApprove);
 <tr>
 <td>
 <h2 class="listaddress"><span id="idListName" ></span>@LISTEUS.CGCENT.MIAMI.EDU</h2>
-<p>Approve the message for the <span id="idListName2"></span> list by clicking the Approve button below.</p>
-<button id="Approve" onClick="Approve();">Approve</button>
-<p>To view the content of this message that corresponds with this approval, please check your mailbox for an email with a subject of: </p>
-<strong><span id="idListName3" style="font-style: bold;"></span>: confirmation required (<span id="idCookie"></span>)</strong>
+<p>Approve the message for the <span id="idListName2"></span> list by clicking the "Approve" button below.</p>
+<button id="Approve" style="background-color: #f47321; color: white; font-weight: bold;" onClick="Approve();">Approve</button>
 </td>
 </tr>
 </table>
@@ -400,9 +395,9 @@ window.location.assign(strApprove);
 <tr>
 <td class="left hide-xs"><font color="#084328">LISTEUS.CGCENT.MIAMI.EDU</font></td>
 <td class="right">
-<img src="http://listeus.cgcent.miami.edu/archives/images/default_logo_fsecure_25x25.png" alt="Secured by F-Secure Anti-Virus" title="Secured by F-Secure Anti-Virus" />
-<img src="http://listeus.cgcent.miami.edu/archives/images/default_logo_catalist_25x25.png" alt="CataList Email List Search" title="CataList Email List Search" />
-<img src="http://listeus.cgcent.miami.edu/archives/images/default_logo_listserv_25x25.png" alt="Powered by LISTSERV" title="Powered by LISTSERV" />
+<img src="https://listeus.cgcent.miami.edu/archives/images/default_logo_fsecure_25x25.png" alt="Secured by F-Secure Anti-Virus" title="Secured by F-Secure Anti-Virus" />
+<img src="https://listeus.cgcent.miami.edu/archives/images/default_logo_catalist_25x25.png" alt="CataList Email List Search" title="CataList Email List Search" />
+<img src="https://listeus.cgcent.miami.edu/archives/images/default_logo_listserv_25x25.png" alt="Powered by LISTSERV" title="Powered by LISTSERV" />
 </td>
 </tr>
 </table>
